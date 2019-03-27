@@ -1,0 +1,388 @@
+<div class="container-fluid" >
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>فريق العمل </h2>
+        <p>جميع أعضاء فريق</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page">فريق العمل</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <a [routerLink]="['/add-employee']" style="float: left; margin-right: 2.5rem; margin: 1%" class="btn btn-info primary-btn"
+        *ngIf="RoleID === '2'">+
+        أضافه</a>
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+            <div class="table-filter-header">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">بحث: </span>
+                      <input class="form-control" id="filter" type="text" [(ngModel)]="name" />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+
+            <table class="table table-striped data-tbl">
+              <!--  data-tbl -->
+              <thead>
+                <tr>
+                  <th>رقم الموظف</th>
+                  <th>الاسم</th>
+                  <th>الوظيفة</th>
+                  <th>الحاله</th>
+                  <th class="td-center">تقرير الأداء</th>
+                  <th class="td-center">عرض نشاط المستخدم</th>
+                  <th class="td-center">رقم هوية الموظف</th>
+                  <th class="td-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let employee of emplyeeData | search :'ID' : name">
+                  <td>{{employee.ID}}</td>
+                  <td>{{ employee.Name }}</td>
+                  <td>
+                    {{ employee.Job }}
+                    <!-- {{(message | async) ?.notification.title}} -->
+                  </td>
+                  <td>
+                    <label class="label label-warning" *ngIf="employee.Status == 1">فعال</label>
+                    <label class="label label-warning" *ngIf="employee.Status == 0">غير قعال</label>
+                  </td>
+                  <td class="td-center">
+                    <button (click)="performanceReport(employee.ID)" class="btn btn-success primary-btn processing"
+                      data-toggle="modal" data-target="#myModal-2">تقرير...</button>
+                  </td>
+                  <td class="td-center"> <a [routerLink]="['/user-activity',employee.ID]" class="btn btn-default primary-btn">عرض
+                      نشاط </a>
+                  </td>
+                  <td class="td-center">{{employee.IdentityNumber}}</td>
+
+                  <td class="td-center">
+                    <div class="btn-toolbar" role="toolbar">
+                      <div class="btn-group" role="group">
+                        <a (click)="GetEmpDetails(employee.ID)" class="btn btn-default btn-sm m-user-assignment"
+                          data-toggle="modal" data-target="#myModal-3">
+                          <i class="zmdi zmdi-search"></i>
+                        </a>
+
+                        <a (click)="getUserID(employee.ID)" class="btn btn-default btn-sm m-user-assignment"
+                          data-toggle="modal" data-target="#myModal-1" *ngIf="RoleID !== '0'">
+                          <i class="zmdi zmdi-assignment"></i>
+                        </a>
+
+                        <a (click)="EditPreprocess(employee.ID)" data-toggle="modal" data-target="#Edit-Employee" class="btn btn-default btn-sm m-user-edit"
+                          *ngIf="RoleID === '2'">
+                          <i class="zmdi zmdi-edit"></i>
+                        </a>
+
+                        <a (click)="deleteEmployee(employee.ID)" class="btn btn-default btn-sm m-user-delete" *ngIf="RoleID === '2'">
+                          <i class="zmdi zmdi-close"></i>
+                        </a>
+
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- asignment popup modal-1 -->
+<div id="myModal-1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعيين</h4>
+      </div>
+      <div class="modal-body" style="height:50vh ; overflow:auto">
+        <div class="widget-wrap">
+
+          <div class="widget-container margin-top-0">
+            <div class="widget-content">
+              <div class="task-widget">
+                <div class="widget-task-list todo-tasklist">
+                  <div class="task-entry" *ngFor="let debtor of allDebtors">
+                    <div class="task-intro">
+                      <div class="task-action">
+                        <input class="task-i-check" type="checkbox" value="debtor.ID" [(ngModel)]="debtor.checked">
+                      </div>
+                      <div class="task-title">{{debtor.Name}} </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="AssignDebtors()">أرسال</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- asignment popup modal-1 -->
+<!-- asignment popup modal-1 -->
+<div id="myModal-3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">التفاصيل</h4>
+      </div>
+      <div class="modal-body">
+        <h6>الاسم : {{Details.Name}}</h6>
+        <h6>العنوان : {{Details.Adress}}</h6>
+        <h6>الوظيفة : {{Details.Job}}</h6>
+        <h6>الهاتف : {{Details.Phone}}</h6>
+        <h6>رقم الهوية : {{Details.IdentityNumber}}</h6>
+        <h6>نوع الهوية : {{Details.IdentityType}}</h6>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- asignment popup modal-1 -->
+
+<!-- asignment report modal-2 -->
+<div id="myModal-2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تقرير الأداء
+        </h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped ">
+          <thead>
+            <tr>
+              <th> عدد المكالمات</th>
+              <th>عدد المدينين المعينين</th>
+              <th>عدد الدفعات </th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{PerformanceReport.CallsCount}}</td>
+              <td>{{PerformanceReport.DebtorsCount}}</td>
+              <td>{{PerformanceReport.BatchesCount}}</td>
+
+            </tr>
+
+
+
+          </tbody>
+
+
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--  asignment report popup modal-2 -->
+
+<!-- asignment popup modal-1 -->
+<div id="Edit-Employee" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعديل الموظف</h4>
+      </div>
+      <div class="modal-body" style="height:90vh ; overflow:auto">
+        <form class="j-forms" novalidate #form="ngForm" (ngSubmit)="updateEmployee()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الاسم</label>
+                <div class="input">
+                  <label class="icon-left" for="name">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.Name" name="name" type="text" placeholder="الاسم"
+                    id="name" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">اسم المستخدم</label>
+                <div class="input">
+                  <label class="icon-left" for="username">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.UserName" name="username" type="text"
+                    placeholder="اسم المستخدم" id="username" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">كلمه المرور</label>
+                <div class="input">
+                  <label class="icon-left" for="password">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.Password" name="password" type="text"
+                    placeholder="كلمه المرور" id="password">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الوظيفة</label>
+                <label class="input select">
+                  <select class="form-control" name="job" [(ngModel)]="editemployeedata.Job">
+                    <option value="none" selected> --------- أختر الوظيفة ---------</option>
+                    <option value="موظف">موظف</option>
+                    <option value="مشرف">مشرف</option>
+
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label">العنوان</label>
+                <div class="input">
+                  <label class="icon-left" for="address">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.Adress" name="address" type="text"
+                    placeholder="العنوان" id="address">
+                </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label"> أسم المشرف</label>
+                <div class="input">
+                  <label class="icon-left" for="supervisorName">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <select class="form-control" name="role1" [(ngModel)]="editemployeedata.SupervisiorID" required>
+                    <option value="" selected> --------- أختر المشرف ---------</option>
+                    <option value="{{s.ID}}" *ngFor="let s of emplyeeData1">{{ s.Name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الدور</label>
+                <label class="input select">
+                  <select class="form-control" name="role" [(ngModel)]="editemployeedata.Role" required>
+                    <option value="none" selected> --------- أختر الدور ---------</option>
+                    <option value="0">مستخدم</option>
+                    <option value="1">مشرف</option>
+                    <option value="2">ادمن</option>
+                    <option value="3">مدير</option>
+
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الحالة</label>
+                <label class="input select">
+                  <select class="form-control" name="Status" [(ngModel)]="editemployeedata.Status" required>
+                    <option value="none"> --------- أختر الحالة ---------</option>
+                    <option value="0">غير فعال</option>
+                    <option value="1">فعال</option>
+
+
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> رقم الهاتف</label>
+                <div class="input">
+                  <label class="icon-left" for="phoneNumber">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.Phone" name="phoneNumber" type="text"
+                    placeholder="رقم الهاتف " id="phoneNumber" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> نوع الهوية</label>
+                <div class="input">
+                  <label class="icon-left" for="nationalType">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.IdentityType" name="nationalType" type="text"
+                    placeholder=" نوع الهوية " id="nationalType">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> رقم الهوية</label>
+                <div class="input">
+                  <label class="icon-left" for="nationalNumber">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editemployeedata.IdentityNumber" name="nationalNumber" type="text"
+                    placeholder="   رقم الهوية " id="nationalNumber">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid " class="btn btn-info primary-btn">تعديل الموظف</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- asignment popup modal-1 -->

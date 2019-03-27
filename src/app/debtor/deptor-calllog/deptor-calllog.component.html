@@ -1,0 +1,169 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدينين </h2>
+        <p>الاسم</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> سجل المكالمات</li>
+        </ul>
+        <br>
+
+      </div>
+      <br>
+      <div class="col-md-6">
+        <button class="btn btn-success" data-toggle="modal" data-target="#Add-call" *ngIf="RoleID === '0'">اضافة مكالمة</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+
+
+            <table class="table foo-data-table-filterable" data-filter="#filter" data-filter-text-only="true">
+              <thead>
+                <tr>
+                  <th class="td-center"> اسم الموظف</th>
+                  <th class="td-center">اسم العميل</th>
+                  <th class="td-center">وقت المكالمة</th>
+                  <th class="td-center"> تاريخ المكالمة</th>
+                  <th class="td-center"> الملاحظة</th>
+                  <th class="td-center"> الحالة</th>
+                  <th class="td-center"> رقم الهاتف</th>
+
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Client: Array(2)
+                0:
+                CompanyName: "compay1"
+                Date: "2017-08-20T00:00:00"
+                DebtorName: "debtor1"
+                StaffName: "staff1" -->
+                <tr *ngFor="let debtor of debtorsCallLog">
+                  <td class="td-center">{{ debtor.StaffName }}</td>
+                  <td class="td-center">{{ debtor.DebtorName }}</td>
+                  <td class="td-center"> {{debtor.Time}} دقيقه</td>
+                  <td class="td-center">{{ debtor.Date | date:'short'}}</td>
+                  <td class="td-center">{{ debtor.Notes}}</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 1">لم يجب</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 2"> خروج نهائي</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 3">تم التواصل</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 4">لديه هاتف اخر</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 5">رقم غير صحيح</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 6">وعد بالسداد</td>
+                  <td class="td-center" *ngIf=" debtor.Status === 7">متوفي</td>
+                  <td class="td-center">{{debtor.Phone}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="Add-call">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">إضافة مكالمة <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></h5>
+
+      </div>
+      <div class="modal-body">
+        <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الوقت</label>
+                <div class="input">
+                  <label class="icon-left" for="name">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Time" name="name" type="text" placeholder="الوقت " id="name">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الملاحظة</label>
+                <div class="input">
+                  <label class="icon-left" for="name1">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Notes" name="name1" type="text" placeholder="الملاحظة "
+                    id="name1">
+                </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label">رقم الهاتف</label>
+                <div class="input">
+                  <label class="icon-left" for="name4">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Phone" name="name4" type="text" placeholder="رقم الهاتف "
+                    id="name4">
+                </div>
+              </div>
+
+
+              <div class="col-md-12 unit">
+                <label class="label">الحالة</label>
+                <div class="input">
+                  <label class="icon-left" for="name3">
+                    <i class="fa fa-edit"></i>
+                  </label>
+
+                  <select class="form-control" [(ngModel)]="formData.Status" name="name3">
+                    <option selected disabled value="">اختر الحالة</option>
+                    <option value="1">لم يجب</option>
+                    <option value="2">خروج نهائي</option>
+                    <option value="3">تم التواصل</option>
+                    <option value="4">لديه هاتف اخر</option>
+                    <option value="5">رقم غير صحيح</option>
+                    <option value="6">وعد بالسداد</option>
+                    <option value="7">متوفي</option>
+                  </select>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info primary-btn">إضافة
+                    مكالمة</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

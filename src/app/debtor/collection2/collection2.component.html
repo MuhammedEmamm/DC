@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> التحصيلات </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a>الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> التحصيلات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <form action="#" class="j-forms" novalidate="">
+
+          <div class="form-content">
+
+            <div class="w-section-header">
+              <h3>تنقيه سريعه</h3>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="unit">
+                  <label class="input select">
+                    <select class="form-control" [(ngModel)]="compname" [ngModelOptions]="{standalone: true}">
+                      <option value="" selected> إسم الدائن</option>
+                      <option value="{{s.CompanyName}}" *ngFor="let s of creditorsComapnies">{{s.CompanyName}}</option>
+
+                    </select>
+                    <i></i>
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label><input type="search" class="form-control" placeholder="بحث" aria-controls="DataTables_Table_0"
+                    [(ngModel)]="name" [ngModelOptions]="{standalone: true}"></label>
+              </div>
+
+            </div>
+            <!-- end popup time interval -->
+
+          </div>
+          <!-- end /.content -->
+
+        </form>
+      </div>
+
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>إسم الموظف</th>
+                  <th>إسم المدين</th>
+                  <th>إسم الشركة</th>
+                  <th> الدين</th>
+                  <th>إسم المشرف</th>
+                  <th> المرفقات</th>
+
+                  <th class="td-center">
+                    الحالة
+
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <!-- DebtorBatches: Array(2)
+                0:
+                CollectionRate: 100
+                CompanyName: "comp1"
+                Date: "2017-08-20T00:00:00"
+                DebtName: "comp1"
+                Debts: 55
+                DelayPayment: 0
+                Payment: 55
+                PaymentDue: 55
+                Total: 55 -->
+                <tr *ngFor="let debtor of debtorsCollection | search :'DebtorName' : name : 'CompanyName' : compname  ">
+                  <td> {{debtor.EmployeeName}} </td>
+                  <td> {{debtor.DebtorName}}</td>
+                  <td> {{ debtor.CompanyName }} </td>
+                  <td>{{debtor.Payment}} ريال</td>
+                  <td>{{SupName}}</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm">Attachments</button>
+                  </td>
+
+                  <td class="td-center">
+                    <label class="label label-success" *ngIf="debtor.Status === 1 ">مُحصلة</label>
+                    <label class="label label-primary" *ngIf="debtor.Status === 2  ">مقبولة</label>
+                    <label class="label label-danger" *ngIf="debtor.Status === 3 ">مرفوضة</label>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

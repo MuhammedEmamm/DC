@@ -1,0 +1,182 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> أضافة مدين </h2>
+
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> مدينين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <div class="row">
+              <div class="col-md-6">
+                <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+                  <div class="form-content Add-form">
+                    <div class="alert alert-danger" *ngIf="submissionErrors">{{submissionErrors}}</div>
+
+                    <!-- start text password -->
+                    <div class="row">
+                      <div class="col-md-12 unit">
+                        <label class="label">الاسم</label>
+                        <div class="input">
+                          <label class="icon-left" for="name">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].Name" name="name" type="text"
+                            placeholder="الاسم " id="name">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">العنوان</label>
+                        <div class="input">
+                          <label class="icon-left" for="address">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].Adrees" name="address" type="text"
+                            placeholder="العنوان  " id="address">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> الوظيفة</label>
+                        <div class="input">
+                          <label class="icon-left" for="job">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].Job" name="job" type="text" placeholder="الوظيفة "
+                            id="Job">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> رقم الهاتف</label>
+                        <div class="input">
+                          <label class="icon-left" for="phone">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].Phone" name="phone" type="text"
+                            placeholder="رقم الهاتف " id="phone">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> نوع الهوية</label>
+                        <div class="input">
+                          <label class="icon-left" for="identitytype">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].IdentityType" name="identitytype" type="text"
+                            placeholder=" نوع الهوية " id="identitytype">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> رقم الهوية</label>
+                        <div class="input">
+                          <label class="icon-left" for="identityno">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].IdentityNumber" name="identityno" type="text"
+                            placeholder="   رقم الهوية " id="identityno">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> المبلغ</label>
+                        <div class="input">
+                          <label class="icon-left" for="identityno1">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData[0].Mony" name="identityno1" type="text"
+                            placeholder="   المبلغ " id="identityno1">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> الشركة</label>
+                        <div class="input">
+                          <label class="icon-left" for="contract1">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <select class="form-control" name="contract1" [(ngModel)]="CompanyName" (ngModelChange)="GetAllContracts(CompanyName)">
+                            <option value="" selected> --------- أختر شركة ---------</option>
+                            <option value="{{s.CompanyID}}" *ngFor="let s of allComps">{{s.CompanyName}}</option>
+                          </select>
+
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 unit">
+                        <label class="label"> العقد</label>
+                        <div class="input">
+                          <label class="icon-left" for="contract">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <select class="form-control" name="contract" [(ngModel)]="formData[0].ContructID"
+                            (ngModelChange)="GetAllProds(formData[0].ContructID)">
+                            <option value="" selected disabled> --------- أختر العقد ---------</option>
+                            <option value="{{con.ID}}" *ngFor="let con of Contracts">{{con.Name}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> المنتج</label>
+                        <div class="input">
+                          <label class="icon-left" for="contract">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <select class="form-control" name="contract" [(ngModel)]="formData[0].ProductID">
+                            <option value="" selected disabled> --------- أختر المنتج ---------</option>
+                            <option value="{{con.ID}}" *ngFor="let con of Prods">{{con.Name}}</option>
+                          </select> </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">الموظف</label>
+                        <div class="input">
+                          <label class="icon-left" for="contract">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <select class="form-control" name="contract" [(ngModel)]="formData[0].UserID">
+                            <option value="none" selected> --------- أختر الموظف ---------</option>
+                            <option value="{{con.ID}}" *ngFor="let con of Emps">{{con.Name}}</option>
+                          </select> </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="btn-ex-container">
+
+                          <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info primary-btn">+
+                            أضافه</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <img src="assets/images/add-2.png" class="img-responsive add_img">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

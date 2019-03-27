@@ -1,0 +1,183 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> إضافة (موظفین أو مدیري البرنامج) </h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> مستخدمين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <div class="row">
+              <div class="col-md-6">
+                <form class="j-forms" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+                  <div class="form-content Add-form">
+                    <div class="alert alert-danger" *ngIf="submissionErrors">{{submissionErrors}}</div>
+
+                    <!-- start text password -->
+                    <div class="row">
+                      <div class="col-md-12 unit">
+                        <label class="label">الاسم</label>
+                        <div class="input">
+                          <label class="icon-left" for="name">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Name" [ngModelOptions]="{standalone: true}"
+                            name="name" type="text" placeholder="الاسم" id="name" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">اسم المستخدم</label>
+                        <div class="input">
+                          <label class="icon-left" for="username">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.UserName" [ngModelOptions]="{standalone: true}"
+                            name="name" type="text" placeholder="اسم المستخدم" id="username" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">كلمه المرور</label>
+                        <div class="input">
+                          <label class="icon-left" for="password">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Password" name="name" [ngModelOptions]="{standalone: true}"
+                            type="password" placeholder="كلمه المرور" id="password">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">الوظيفة</label>
+                        <label class="input select">
+                          <select class="form-control" name="job" [(ngModel)]="formData.Job" [ngModelOptions]="{standalone: true}">
+                            <option value="" selected> --------- أختر الوظيفة ---------</option>
+                            <option value="موظف">موظف</option>
+                            <option value="مشرف">مشرف</option>
+
+                          </select>
+                          <i></i>
+                        </label>
+                      </div>
+
+                      <div class="col-md-12 unit">
+                        <label class="label">العنوان</label>
+                        <div class="input">
+                          <label class="icon-left" for="address">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Adress" name="name" type="text"
+                            [ngModelOptions]="{standalone: true}" placeholder="العنوان" id="address">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">الدور</label>
+                        <label class="input select">
+                          <select class="form-control" [(ngModel)]="formData.Role" [ngModelOptions]="{standalone: true}"
+                            required>
+                            <option value="" selected> --------- أختر الدور ---------</option>
+                            <option value="0">مستخدم</option>
+                            <option value="4"> مستخدم لشركة/ بنك</option>
+                            <option value="1">مشرف</option>
+                            <option value="3">مدير</option>
+                          </select>
+                          <i></i>
+                        </label>
+                      </div>
+
+                      <div class="col-md-12 unit" *ngIf="formData.Role !== '4'">
+                        <label class="label"> أسم المشرف</label>
+                        <div class="input">
+
+                          <select class="form-control" [(ngModel)]="formData.SupervisiorID" [ngModelOptions]="{standalone: true}"
+                            required>
+                            <option value="" selected> --------- أختر المشرف ---------</option>
+                            <option value="{{s.ID}}" *ngFor="let s of emplyeeData">{{ s.Name }}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 unit">
+                        <label class="label">الحالة</label>
+                        <label class="input select">
+                          <select class="form-control" name="Status" [(ngModel)]="formData.Status" [ngModelOptions]="{standalone: true}"
+                            required>
+                            <option value="" selected> --------- أختر الحالة ---------</option>
+                            <option value="0">غير فعال</option>
+                            <option value="1">فعال</option>
+
+
+                          </select>
+                          <i></i>
+                        </label>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> رقم الهاتف</label>
+                        <div class="input">
+                          <label class="icon-left" for="phoneNumber">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Phone" name="phoneNumber" [ngModelOptions]="{standalone: true}"
+                            type="text" placeholder="رقم الهاتف " id="phoneNumber" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> نوع الهوية</label>
+                        <div class="input">
+                          <label class="icon-left" for="nationalType">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.IdentityType" name="nationalType"
+                            [ngModelOptions]="{standalone: true}" type="text" placeholder=" نوع الهوية " id="nationalType">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> رقم الهوية</label>
+                        <div class="input">
+                          <label class="icon-left" for="nationalNumber">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.IdentityNumber" name="nationalNumber"
+                            [ngModelOptions]="{standalone: true}" type="text" placeholder="   رقم الهوية " id="nationalNumber">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="btn-ex-container">
+
+                          <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info primary-btn">+
+                            أضافه</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <img src="assets/images/add-employee.png" class="img-responsive add_img">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

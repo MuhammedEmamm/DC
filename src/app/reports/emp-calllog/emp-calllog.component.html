@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدينين </h2>
+        <p>الاسم</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> سجل المكالمات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+
+
+            <table class="table foo-data-table-filterable" data-filter="#filter" data-filter-text-only="true"
+              data-page-size="5" data-limit-navigation="3">
+              <thead>
+                <tr>
+                  <th class="td-center"> اسم الموظف</th>
+                  <th class="td-center">اسم العميل</th>
+                  <th class="td-center">رقم هوية العميل</th>
+                  <th class="td-center">رقم هاتف العميل</th>
+                  <th class="td-center">اسم الدائن</th>
+                  <th class="td-center">وقت المكالمة</th>
+                  <th class="td-center"> تاريخ المكالمة</th>
+                  <th class="td-center">حالة المكالمة</th>
+                  <th class="td-center"> كود المنتج</th>
+                  <th class="td-center">اسم المنتج</th>
+
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of Data">
+                  <td class="td-center">
+                    {{d.StaffName}}
+                  </td>
+                  <td class="td-center"> {{d.DebtorName}} </td>
+                  <td class="td-center"> {{d.DebtorIdentityNumber}} </td>
+                  <td class="td-center"> {{d.Phone}} </td>
+
+
+                  <td class="td-center">
+                    {{d.CompanyName}}
+                  </td>
+
+                  <td class="td-center"> {{d.Time}} دقيقه</td>
+                  <td class="td-center">
+                    {{d.Date|date:'short'}}
+                  </td>
+                  <td class="td-center" *ngIf=" d.Status === 1">لم يجب</td>
+                  <td class="td-center" *ngIf=" d.Status === 2"> خروج نهائي</td>
+                  <td class="td-center" *ngIf=" d.Status === 3">تم التواصل</td>
+                  <td class="td-center" *ngIf=" d.Status === 4">لديه هاتف اخر</td>
+                  <td class="td-center" *ngIf=" d.Status === 5">رقم غير صحيح</td>
+                  <td class="td-center" *ngIf=" d.Status === 6">وعد بالسداد</td>
+                  <td class="td-center" *ngIf=" d.Status === 7">متوفي</td>
+                  <td class="td-center" *ngIf=" d.Status === 0">لا يوجد حالة</td>
+
+                  <td class="td-center">
+                    <ul>
+                      <li *ngFor="let c of d.ProductCode">{{c}}</li>
+                    </ul>
+                  </td>
+                  <td class="td-center">
+                    <ul>
+                      <li *ngFor="let c of d.ProductName">{{c}}</li>
+                    </ul>
+                  </td>
+
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

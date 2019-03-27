@@ -1,0 +1,190 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدينين </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> البيانات الشخصية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <div class="table-filter-header">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                  <button class="btn btn-success pull-right" style="margin-top:10px" data-toggle="modal" data-target="#Edit-profile"
+                    *ngIf="RoleID === '1'">تعديل
+                    البيانات الشخصية</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-12 ">
+                <table class="table table-striped ">
+                  <thead>
+                    <tr>
+                      <th> الاسم </th>
+                      <th> رقم الهاتف</th>
+                      <th>الوظيفه</th>
+                      <th>نوع الهوية</th>
+                      <th>رقم الهوية</th>
+                      <th>العنوان</th>
+                      <th>اسم المنتج</th>
+                      <th>كود المنتج</th>
+                      <th>التاريخ</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <!-- *ngFor="let debtor of debtorsData" -->
+                      <td> <span>{{debtorsData.Name}}</span>
+                      </td>
+                      <td> <span> {{debtorsData.Phone}}</span></td>
+                      <td> <span> {{debtorsData.Job}}</span>
+                      </td>
+                      <td> <span> {{debtorsData.IdentityType}} </span>
+                      </td>
+                      <td> <span> {{debtorsData.IdentityNumber}} </span>
+                      </td>
+                      <td> <span> {{debtorsData.Adrees}} </span>
+                      </td>
+                      <td> <span> {{debtorsData.ProductName}} </span>
+                      </td>
+                      <td> <span> {{debtorsData.ProductCode}} </span>
+                      </td>
+                      <td> <span> {{debtorsData.Date|date}} </span>
+                      </td>
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="Edit-profile">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">تعديل البيانات الشخصية <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></h5>
+
+      </div>
+      <div class="modal-body">
+        <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الاسم</label>
+                <div class="input">
+                  <label class="icon-left" for="name">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.Name" name="name" type="text" placeholder="الاسم "
+                    id="name">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">العنوان</label>
+                <div class="input">
+                  <label class="icon-left" for="address">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.Adrees" name="address" type="text" placeholder="العنوان  "
+                    id="address">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> الوظيفة</label>
+                <div class="input">
+                  <label class="icon-left" for="job">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.Job" name="job" type="text" placeholder="الوظيفة "
+                    id="Job">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> رقم الهاتف</label>
+                <div class="input">
+                  <label class="icon-left" for="phone">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.Phone" name="phone" type="text" placeholder="رقم الهاتف "
+                    id="phone">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> نوع الهوية</label>
+                <div class="input">
+                  <label class="icon-left" for="identitytype">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.IdentityType" name="identitytype" type="text"
+                    placeholder=" نوع الهوية " id="identitytype">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> رقم الهوية</label>
+                <div class="input">
+                  <label class="icon-left" for="identityno">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="debtorsData.IdentityNumber" name="identityno" type="text"
+                    placeholder="   رقم الهوية " id="identityno">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info primary-btn">تعديل
+                    البيانات</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

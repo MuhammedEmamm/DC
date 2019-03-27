@@ -1,0 +1,256 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> أسم المدين </h2>
+        <p>تقارير الدفعات </p>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> الدفعات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+        <div class="data-action-bar">
+          <div class="row">
+
+            <div class="col-md-12">
+
+              <div class="data-align-right Fledt">
+
+                <div class="tbl-action-toolbar">
+                  <ul>
+                    <!-- <li class="dropdown">
+                      <a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown"><i class="zmdi zmdi-archive"></i>
+                        طباعة</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'json',escape:'false'});"> <i
+                              class="fa fa-file-o"></i> JSON</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});">
+                            <i class="fa fa-file-o"></i> JSON (ignoreColumn)</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'json',escape:'true'});"> <i
+                              class="fa fa-file-o"></i> JSON (with Escape)</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'xml',escape:'false'});"> <i
+                              class="fa fa-file-code-o"></i> XML</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'sql'});"> <i class="fa fa-file-code-o"></i>
+                            SQL</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'csv',escape:'false'});"> <i
+                              class="fa fa-file-code-o"></i> CSV</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'txt',escape:'false'});"> <i
+                              class="fa fa-file-text-o"></i> TXT</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'excel',escape:'false'});"> <i
+                              class="fa fa-file-excel-o"></i> XLS</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'doc',escape:'false'});"> <i
+                              class="fa fa-file-word-o"></i> Word</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'powerpoint',escape:'false'});">
+                            <i class="fa fa-file-powerpoint-o"></i> PowerPoint</a></li>
+                        <li><a href="#" onclick="$('#exportable-tbl').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});">
+                            <i class="fa fa-file-pdf-o"></i> PDF</a></li>
+
+
+                      </ul>
+                    </li> -->
+                    <li><a [routerLink]="['/add-payment', ID ]" class="btn add-row btn-primary" *ngIf="RoleID === '0'">أضافة</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th> موعد</th>
+                  <th> المبلغ</th>
+                  <th> الحاله</th>
+
+                  <th>الملاحظة</th>
+                  <th>المدفوع</th>
+                  <th>النوع</th>
+
+                  <!-- <td>أضافه ملف</td> -->
+                  <th class="td-center"> </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Batches: Array(2)
+0:
+CollectionRate: 100
+CompanyName: "comp1"
+ContructID: 2
+Date: "2017-08-20T00:00:00"
+DebtorName: "Hassan"
+Mony: 55
+Payments: 55
+Remaining: 0
+StaffName: "Admin1" -->
+                <tr *ngFor="let debtor of debtorsPayment">
+                  <td>{{debtor.Date | date:'short'}}</td>
+                  <td>{{debtor.Mony}} ريال</td>
+                  <td>
+                    <label class="label label-warning" *ngIf="debtor.StatusType === 0 ">غير مدفوع</label>
+                    <label class="label label-success" *ngIf="debtor.StatusType === 1 ">مُحصلة</label>
+                    <label class="label label-primary" *ngIf="debtor.StatusType === 2 ">مقبولة</label>
+                    <label class="label label-danger" *ngIf="debtor.StatusType === 3 ">مرفوضة</label>
+
+
+                  </td>
+                  <td>
+                    <div class="recent-comments">
+
+                      <div class="comment-text">
+                        <p>{{debtor.Notes }} </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{debtor.Payment}}</td>
+                  <td *ngIf="debtor.Type === 1">سداد كامل</td>
+                  <td *ngIf="debtor.Type === 2">تسوية</td>
+                  <td *ngIf="debtor.Type === 3">جدولة</td>
+                  <td *ngIf="debtor.Type !== 1 && debtor.Type !== 2 && debtor.Type !== 3 ">لا يوجد نوع</td>
+
+                  <!-- <td> <input type="file" name="pic" accept="image/*">
+                  </td> -->
+                  <td>
+                    <a (click)="EditPreprocess(debtor.ID)" class="row-edit" data-toggle="modal" data-target="#Edit-payment"
+                      style="cursor:pointer" *ngIf="RoleID === '0'">
+                      <span class="zmdi zmdi-edit"></span>
+                    </a>
+                    <a (click)="deletePayment(debtor.ID)" class="row-delete" style="cursor:pointer">
+                      <span class="zmdi zmdi-close" *ngIf="RoleID !== '0' && RoleID !== '3' "></span>
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="Edit-payment">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">تعديل الدفعة <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></h5>
+
+      </div>
+      <div class="modal-body">
+        <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="editPayment()">
+
+          <div class="form-content Add-form">
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">المبلغ</label>
+                <div class="input">
+                  <label class="icon-left" for="Mony">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editPaymentData.Mony" name="Mony" type="Mony" placeholder="المبلغ "
+                    id="Mony">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">المدفوع</label>
+                <div class="input">
+                  <label class="icon-left" for="Mony1">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editPaymentData.Payment" name="Mony1" type="number"
+                    placeholder="المدفوع " id="Mony1">
+                </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label">الحاله</label>
+                <div class="input">
+                  <label class="icon-left" for="Status">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <label class="input select">
+                    <select class="form-control" name="Status" [(ngModel)]="editPaymentData.Status" id="Status">
+                      <option value="" selected disabled> --------- أختر الحالة ---------</option>
+                      <option value="0">غير مدفوع</option>
+                      <option value="1">مُحصلة</option>
+
+                    </select>
+
+                  </label>
+
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> الملاحظة</label>
+                <div class="input">
+                  <label class="icon-left" for="ملاحظات">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editPaymentData.Notes" name="Notes" type="text" placeholder="ملاحظات "
+                    id="Notes">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label"> النوع</label>
+                <div class="input">
+                  <label class="icon-left" for="contract2">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <select class="form-control" name="contract2" [(ngModel)]="editPaymentData.Type">
+                    <option value="" selected disabled> --------- أختر النوع ---------</option>
+                    <option value="1"> سداد كامل</option>
+                    <option value="2">تسوية </option>
+                    <option value="3">جدولة </option>
+
+
+                  </select> </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label"> ملف</label>
+                <div class="input">
+                  <label class="icon-left" for="S">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="editPaymentData.Attachment" (change)="onChange($event)" name="S"
+                    type="file" placeholder="المبلغ " id="S">
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid " class="btn btn-info primary-btn">تعديل الدفعة</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

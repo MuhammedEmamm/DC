@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المتابعة </h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a>الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> المتابعة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+        <div class="data-action-bar">
+          <div class="row">
+
+            <div class="col-md-12">
+
+              <div class="data-align-right Fledt">
+
+                <div class="tbl-action-toolbar">
+                  <ul>
+                    <li><a href="#add" class="btn add-row btn-primary">أضافة</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <div class="row">
+              <div class="col-md-6">
+                <form class="j-forms" novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+
+                  <div class="form-content Add-form">
+                    <div class="alert alert-danger" *ngIf="submissionErrors">{{submissionErrors}}</div>
+                    <!-- start text password -->
+                    <div class="row">
+                      <div class="col-md-12 unit">
+                        <label class="label">الملاحظات</label>
+                        <div class="input">
+                          <label class="icon-left" for="name">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Notes" name="name" type="text" placeholder="الملاحظات"
+                            id="name" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">الموعد</label>
+                        <div class="input">
+                          <label class="icon-left" for="username">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Date" name="username" type="date"
+                            placeholder="الموعد" id="username" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">Attachment</label>
+                        <div class="input">
+                          <label class="icon-left" for="password">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input (change)="incomingfile($event)" class="form-control" name="Attachment" accept="application/pdf"
+                            type="file" placeholder="كلمه المرور" id="password">
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 unit">
+                        <label class="label">المبلغ</label>
+                        <div class="input">
+                          <label class="icon-left" for="address">
+                            <i class="fa fa-edit"></i>
+                          </label>
+                          <input class="form-control" [(ngModel)]="formData.Mony" name="address" type="number"
+                            placeholder="المبلغ" id="address">
+                        </div>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label">الحالة</label>
+                        <label class="input select">
+                          <select class="form-control" name="role" [(ngModel)]="formData.StatusType" required>
+                            <option selected value=""> --------- أختر الحالة ---------</option>
+                            <option value="0">غير مدفوع</option>
+                            <option value="1">مُحصلة</option>
+
+                          </select>
+                          <i></i>
+                        </label>
+                      </div>
+                      <div class="col-md-12 unit">
+                        <label class="label"> حالة العميل</label>
+                        <div class="input">
+                          <label class="icon-left" for="name3">
+                            <i class="fa fa-edit"></i>
+                          </label>
+
+                          <select class="form-control" [(ngModel)]="formData.Type" name="name3">
+                            <option selected value="">اختر الحالة</option>
+                            <option value="1">لم يجب</option>
+                            <option value="2">خروج نهائي</option>
+                            <option value="3">تم التواصل</option>
+                            <option value="4">لديه هاتف اخر</option>
+                            <option value="5">رقم غير صحيح</option>
+                            <option value="6">وعد بالسداد</option>
+                            <option value="7">متوفي</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 unit">
+                        <label class="label">المدين</label>
+                        <label class="input select">
+                          <select class="form-control" name="role" [(ngModel)]="formData.DebtID" required>
+                            <option value="" selected disabled> --------- أختر الدين ---------</option>
+                            <option value="{{debtor.DebtID}}" *ngFor="let debtor of allDebtors ; ">
+                              <h1> اسم المدين :
+                                {{debtor.Name}}<br>
+                                كود العقد :{{debtor.ContructID}}
+                              </h1>
+
+                            </option>
+                          </select>
+                          <i></i>
+                        </label>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="btn-ex-container">
+
+                          <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info primary-btn">
+                            +
+                            أضافه</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+                <img src="assets/images/add-employee.png" class="img-responsive add_img">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

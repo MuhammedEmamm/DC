@@ -1,0 +1,100 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "westilo"
+  },
+  "apps": [{
+    "root": "src",
+    "outDir": "dist",
+    "assets": [
+      "assets",
+      "favicon.ico",
+      "manifest.json"
+    ],
+    "index": "index.html",
+    "main": "main.ts",
+    "polyfills": "polyfills.ts",
+    "test": "test.ts",
+    "tsconfig": "tsconfig.app.json",
+    "testTsconfig": "tsconfig.spec.json",
+    "prefix": "app",
+    "styles": [
+      "assets/css/bootstrap.rtl.min.css",
+      "assets/css/bootstrap-extend.css",
+      "styles.css",
+      "assets/css/font-awesome.css",
+      "assets/css/material-design-iconic-font.css",
+      "assets/css/animate.css",
+      "assets/css/layout.css",
+      "assets/css/components.css",
+      "assets/css/widgets.css",
+      "assets/css/plugins.css",
+      "assets/css/pages.css",
+      "assets/css/common.css",
+      "assets/css/responsive.css"
+
+    ],
+    "scripts": [
+      "../node_modules/jquery/dist/jquery.min.js",
+      "../node_modules/signalr/jquery.signalR.js",
+      "assets/js/lib/bootstrap.js",
+      "assets/js/lib/jquery.ui.js",
+      "assets/js/lib/jRespond.js",
+      "assets/js/lib/nav.accordion.js",
+      "assets/js/lib/hover.intent.js",
+      "assets/js/lib/hammerjs.js",
+      "assets/js/lib/jquery.hammer.js",
+      "assets/js/lib/smart-resize.js",
+      "assets/js/lib/footable.all.js",
+      "assets/js/lib/jquery.dataTables.js",
+      "assets/js/lib/dataTables.responsive.js",
+      "assets/js/lib/dataTables.tableTools.js",
+      "assets/js/lib/dataTables.bootstrap.js",
+      "assets/js/lib/jquery.maskedinput.js",
+      "assets/js/lib/jquery.validate.js",
+      "assets/js/lib/jquery.slimscroll.js" ,       
+      "assets/js/lib/additional-methods.js",
+      "assets/js/lib/jquery-cloneya.js",
+      "assets/js/lib/jquery.ui.timepicker.js",
+      "assets/js/lib/jquery.ui.touch-punch.js",
+      "assets/js/lib/select2.full.js",
+      "assets/js/lib/j-forms.js",
+      "assets/js/lib/daterangepicker.js",
+      "assets/js/lib/bootstrap-datepicker.js",
+      "assets/js/lib/moment.js",
+      "assets/js/apps.js"
+    ],
+    "environmentSource": "environments/environment.ts",
+    "environments": {
+      "dev": "environments/environment.ts",
+      "prod": "environments/environment.prod.ts"
+    }
+  }],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [{
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

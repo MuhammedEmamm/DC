@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقرير بيانات العملاء </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> البيانات الشخصية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+        <div class="table-filter-header">
+          <div class="data-action-bar">
+            <div class="row">
+
+              <div class="col-md-12">
+
+                <div class="data-align-right Fledt">
+
+                  <div class="tbl-action-toolbar">
+                  
+                    <button class="btn btn-info" (click)="ExportoCsv()"><i class="zmdi zmdi-archive"></i> Excel file</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th> الاسم </th>
+                  <th> رقم الهاتف</th>
+                  <th>الوظيفه</th>
+                  <th>التاريخ</th>
+  
+                  <th>نوع الهوية</th>
+                  <th>رقم الهوية</th>
+                  <th>كود المنتج</th>
+                  <th>اسم المنتج</th>
+
+                  <th>الموظف </th>
+                  <th>رقم الموظف </th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of Data">
+                  <td> <span>{{d.Name}}</span>
+                  </td>
+                  <td> <span> {{d.Phone}}</span></td>
+                  <td> <span> {{d.Job}}</span>
+                  </td>
+                  <td> <span> {{d.Date | date}}</span>
+                  </td>
+                  
+                  <td> <span> {{d.IdentityType}} </span>
+                  </td>
+                  <td> <span> {{d.IdentityNumber}} </span>
+                  </td>
+                  <td> <span> {{d.ProductCode}} </span>
+                  </td>
+
+                  <td> <span> {{d.ProductName}} </span>
+                  </td>
+
+                  <td> <span> {{d.UserName}} </span>
+                  </td>
+                  <td> <span> {{d.UserID}} </span>
+                  </td>
+
+
+
+
+                </tr>
+
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

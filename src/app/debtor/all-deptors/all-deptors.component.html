@@ -1,0 +1,135 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدينين </h2>
+        <p>جميع اسماء المدينين للشركات والبنوك</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a>الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> المدينين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <a [routerLink]="['/add-debtor']" style="float: left; margin-right: 2.5rem ; margin: 1%" class="btn btn-info primary-btn" *ngIf="RoleID === '2' ||RoleID === '4' ">+
+        أضافه</a>
+
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <div class="table-filter-header">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">بحث: </span>
+                      <input class="form-control" id="filter" type="text" [(ngModel)]="name" placeholder="رقم الهوية" />
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">بحث: </span>
+                      <input class="form-control" id="filter1" type="text" [(ngModel)]="sname" placeholder="رقم الهاتف" />
+                    </div>
+
+                    <!-- <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">منقي: </span>
+                      <select class="filter-status  form-control">
+                        <option value="active"> اسم الشركة / البنك </option>
+                        <option value="disabled">Disabled</option>
+                        <option value="suspended">Suspended</option>
+                      </select>
+                    </div>
+                     -->
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4"></div>
+                <div class="col-md-2 col-sm-2">
+                  <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file"
+                    accept=".xlsx">
+                  <button class="btn btn-success" style="margin-top:20px" (click)="Upload()">Insert Bulk debtors list</button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-12 ">
+                <table class="table table-striped ">
+                  <thead>
+                    <tr>
+                      <th> الاسم</th>
+                      <th>رقم الهوية</th>
+                      <th colspan="2" class="td-center"> الديون</th>
+                      <th colspan="2" class="td-center"> رقم الهاتف</th>
+                      <th colspan="2" class="td-center"> كود الشركة</th>
+                      <th colspan="2" class="td-center"> كود المنتج</th>
+                      <th colspan="2" class="td-center"> التاريح</th>
+
+
+                      <th class="td-center">الدفعات</th>
+                      <th class="td-center"> تقرير المحاسبة</th>
+                      <th class="td-center"> السجل</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <!-- Debtors: Array(3)
+                    0:
+                    IdentityNumber: null
+                    IdentityType: null
+                    Job: "123123123"
+                    Name: "Hassan"
+                    Phone: null -->
+
+                    <tr *ngFor="let debtor of allDebtors | search :'IdentityNumber' : name :  'Phone' : sname">
+                      <td><a [routerLink]="['/debtor-profile', debtor.DebtorID] ">
+                          <i class="zmdi zmdi-account-circle"></i>{{ debtor.Name }}</a>
+                      </td>
+                      <td> {{ debtor.IdentityNumber }}</td>
+                      <td colspan="2" class="td-center"> {{ debtor.AllDebt }}</td>
+                      <td colspan="2" class="td-center"> {{ debtor.Phone }}</td>
+                      <td colspan="2" class="td-center"> {{ debtor.CompanyCode }}</td>
+                      <td colspan="2" class="td-center"> {{ debtor.ProductCode }}</td>
+                      <td colspan="2" class="td-center"> {{ debtor.Date|date}}</td>
+                      
+                      <td class="text-center">
+                        <a [routerLink]="['/debtor-payment', debtor.DebtorID] " class="btn btn-info primary-btn">
+                          <i class="zmdi zmdi-money-box"></i>
+                          الدفعات </a>
+                      </td>
+                      <td class="text-center">
+                        <a [routerLink]="['/accounting-report' , debtor.DebtorID]" class="btn btn-success success-btn">
+                          <i class="zmdi zmdi-money-box"></i>
+                          تقرير </a>
+                      </td>
+                      <td class="text-center">
+                        <a [routerLink]="['/debtor-calllog',debtor.DebtorID , debtor.ContructID]" class="btn btn-primary ">
+                          <i class="zmdi zmdi-phone"></i>
+                          سجل المكالمات </a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

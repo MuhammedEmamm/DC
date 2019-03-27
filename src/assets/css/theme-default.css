@@ -1,0 +1,213 @@
+.card-shadow {
+    box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.1);
+}
+/*-------------------------
+Topbar
+--------------------------*/
+.topbar {
+    background-color: #ffffff;
+}
+.topbar .top-search-bar {
+    background-color: #ffffff;
+}
+.topbar .topbar-left {
+    background-color: #17bab8;
+}
+.topbar .topbar-right {
+    background-color: #ffffff;
+}
+.topbar .topbar-right .left-bar-switch {
+    color: #757575;
+}
+.topbar .topbar-right .top-right-icons > li > a {
+    color: #757575;
+}
+.topbar .topbar-right .top-right-icons > li > a .noty-bubble {
+    background-color: #ff5252;
+    color: #ffffff;
+}
+.topbar .topbar-right .top-right-icons > li > a .more-noty {
+    background-color: #ff5252;
+}
+/*-------------------------
+Left Sidebar
+--------------------------*/
+.leftbar {
+    background-color: #2f3038;
+}
+.leftbar.material-leftbar {
+    background-color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container {
+    background: #4fa49a;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #4fa49a 0%, #4361c2 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #4fa49a), color-stop(100%, #4361c2));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg, #4fa49a 0%, #4361c2 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg, #4fa49a 0%, #4361c2 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg, #4fa49a 0%, #4361c2 100%);
+    /* IE10+ */
+    background: linear-gradient(45deg, #4fa49a 0%, #4361c2 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4fa49a', endColorstr='#4361c2', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info {
+    color: #aaaaaa;
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a {
+    color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a:hover,
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a:focus {
+    color: #17bab8;
+}
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a {
+    color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a:hover,
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a:focus {
+    color: #17bab8;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.leftbar.material-leftbar .list-accordion .list-title {
+    background-color: #fff;
+    border-bottom: rgba(0, 0, 0, 0.08) 1px solid;
+    color: #666666;
+}
+.leftbar.material-leftbar .list-accordion li ul li a {
+    color: #868686;
+}
+.leftbar.material-leftbar .list-accordion li ul li a:hover,
+.leftbar.material-leftbar .list-accordion li ul li a:focus {
+    color: #17bab8;
+}
+.leftbar.material-leftbar .list-accordion > li > a {
+    background-color: #fff;
+    color: #868686;
+}
+.leftbar.material-leftbar .list-accordion > li > a.acc-parent.active {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #17bab8;
+}
+.leftbar.material-leftbar .list-accordion > li > a:hover,
+.leftbar.material-leftbar .list-accordion > li > a:focus {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #17bab8;
+}
+.leftbar.material-leftbar .list-accordion > li > a:before {
+    background: #ccc;
+}
+.list-accordion .list-title {
+    background-color: #2c2c31;
+    border-top: rgba(0, 0, 0, 0.12) 1px solid;
+    border-bottom: rgba(0, 0, 0, 0.12) 1px solid;
+    color: #666666;
+}
+.list-accordion li ul li a {
+    color: #868686;
+}
+.list-accordion li ul li a:hover,
+.list-accordion li ul li a:focus {
+    color: #17bab8;
+}
+.list-accordion > li > a {
+    background-color: #2c2c31;
+    color: #868686;
+}
+.list-accordion > li > a.acc-parent.active {
+    background-color: #3a3b44;
+    color: #17bab8;
+}
+.list-accordion > li > a:hover,
+.list-accordion > li > a:focus {
+    background-color: #3a3b44;
+    color: #17bab8;
+}
+.tree-style li ul:after {
+    border-left: #3a3b44 1px solid;
+}
+.tree-style li ul li a:before {
+    color: #3a3b44;
+}
+.tree-style li ul li a:hover:before,
+.tree-style li ul li a:focus:before {
+    color: #17bab8;
+}
+.tree-style li ul li a:after {
+    border-bottom: #3a3b44 1px solid;
+}
+.user-profile-container {
+    background-color: #35353b;
+}
+.user-profile-container .user-profile .admin-user-info {
+    color: #aaaaaa;
+}
+.user-profile-container .user-profile .admin-user-info ul li a {
+    color: #aaaaaa;
+}
+.user-profile-container .user-profile .admin-user-info ul li a:hover,
+.user-profile-container .user-profile .admin-user-info ul li a:focus {
+    color: #17bab8;
+}
+.user-profile-container .admin-bar ul li a {
+    color: #6c6c6f;
+}
+.user-profile-container .admin-bar ul li a:hover,
+.user-profile-container .admin-bar ul li a:focus {
+    color: #17bab8;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.iconic-view .iconic-leftbar {
+    background-color: #2f3038;
+}
+.iconic-view .list-accordion li ul {
+    background-color: #363740;
+}
+.iconic-view .list-accordion li ul li a {
+    color: #868686;
+}
+.iconic-view .list-accordion li ul li a:hover,
+.iconic-view .list-accordion li ul li a:focus {
+    color: #17bab8;
+}
+.iconic-view .list-accordion > li > a {
+    background-color: #2c2c31;
+    color: #868686;
+}
+.iconic-view .list-accordion > li > a:hover,
+.iconic-view .list-accordion > li > a:focus {
+    background-color: #3a3b44;
+    color: #17bab8;
+}
+.iconic-aside-container .user-profile-container {
+    background-color: #35353b;
+}
+.iconic-aside-container .user-profile-container .user-profile {
+    background-color: #35353b;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info {
+    color: #aaaaaa;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a {
+    color: #aaaaaa;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a:hover,
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a:focus {
+    color: #17bab8;
+}
+.iconic-aside-container .user-profile-container .admin-bar {
+    background-color: #35353b;
+}
+.iconic-aside-container .user-profile-container .admin-bar ul li a {
+    color: #6c6c6f;
+}
+.iconic-aside-container .user-profile-container .admin-bar ul li a:hover,
+.iconic-aside-container .user-profile-container .admin-bar ul li a:focus {
+    color: #17bab8;
+    background-color: rgba(0, 0, 0, 0.1);
+}

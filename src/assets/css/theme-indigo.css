@@ -1,0 +1,220 @@
+.card-shadow {
+  box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.1);
+}
+/*-------------------------
+Topbar
+--------------------------*/
+.topbar {
+  background-color: #ffffff;
+}
+.topbar .top-search-bar {
+  background-color: #ffffff;
+}
+.topbar .topbar-left {
+  background-color: #3f51b5;
+}
+.topbar .topbar-right {
+  background-color: #ffffff;
+}
+.topbar .topbar-right .left-bar-switch {
+  color: #757575;
+}
+.topbar .topbar-right .top-right-icons > li > a {
+  color: #757575;
+}
+.topbar .topbar-right .top-right-icons > li > a .noty-bubble {
+  background-color: #ff5252;
+  color: #ffffff;
+}
+.topbar .topbar-right .top-right-icons > li > a .more-noty {
+  background-color: #ff5252;
+}
+/*-------------------------
+Left Sidebar
+--------------------------*/
+.leftbar {
+  background-color: #5c6bc0;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.leftbar.material-leftbar {
+  background-color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container {
+  background-color: #3f51b5;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info {
+  color: #e0e0e0;
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a {
+  color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a:hover,
+.leftbar.material-leftbar .user-profile-container .user-profile .admin-user-info ul li a:focus {
+  color: #536dfe;
+}
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a {
+  color: #fff;
+}
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a:hover,
+.leftbar.material-leftbar .user-profile-container .admin-bar ul li a:focus {
+  color: #536dfe;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.leftbar.material-leftbar .list-accordion {
+  background-color: #fff;
+}
+.leftbar.material-leftbar .list-accordion .list-title {
+  background-color: #fff;
+  border-bottom: rgba(0, 0, 0, 0.08) 1px solid;
+  color: #3d5afe;
+}
+.leftbar.material-leftbar .list-accordion li ul li a {
+  color: #888;
+}
+.leftbar.material-leftbar .list-accordion li ul li a:hover,
+.leftbar.material-leftbar .list-accordion li ul li a:focus {
+  color: #536dfe;
+}
+.leftbar.material-leftbar .list-accordion > li > a {
+  background-color: #fff;
+  color: #888;
+}
+.leftbar.material-leftbar .list-accordion > li > a.acc-parent.active {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #3f51b5;
+}
+.leftbar.material-leftbar .list-accordion > li > a:hover,
+.leftbar.material-leftbar .list-accordion > li > a:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #536dfe;
+}
+.leftbar.material-leftbar .list-accordion > li > a:before {
+  background: #ccc;
+}
+.list-accordion .list-title {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-top: rgba(0, 0, 0, 0.08) 1px solid;
+  border-bottom: rgba(0, 0, 0, 0.08) 1px solid;
+  color: #3d5afe;
+}
+.list-accordion li ul li a {
+  color: #e0e0e0;
+}
+.list-accordion li ul li a:hover,
+.list-accordion li ul li a:focus {
+  color: #536dfe;
+}
+.list-accordion > li > a {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
+}
+.list-accordion > li > a.acc-parent.active {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #3f51b5;
+}
+.list-accordion > li > a:hover,
+.list-accordion > li > a:focus {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #536dfe;
+}
+.tree-style li ul:after {
+  border-left: #e0e0e0 1px solid;
+}
+.tree-style li ul li a:before {
+  color: #e0e0e0;
+}
+.tree-style li ul li a:hover:before,
+.tree-style li ul li a:focus:before {
+  color: #536dfe;
+}
+.tree-style li ul li a:after {
+  border-bottom: #e0e0e0 1px solid;
+}
+.user-profile-container {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.user-profile-container .user-profile .admin-user-info {
+  color: #e0e0e0;
+}
+.user-profile-container .user-profile .admin-user-info ul li a {
+  color: #e0e0e0;
+}
+.user-profile-container .user-profile .admin-user-info ul li a:hover,
+.user-profile-container .user-profile .admin-user-info ul li a:focus {
+  color: #536dfe;
+}
+.user-profile-container .admin-bar ul li a {
+  color: #e0e0e0;
+}
+.user-profile-container .admin-bar ul li a:hover,
+.user-profile-container .admin-bar ul li a:focus {
+  color: #536dfe;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.iconic-view .iconic-leftbar {
+  background-color: #5c6bc0;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+}
+.iconic-view .list-accordion li ul {
+  background-color: #363740;
+}
+.iconic-view .list-accordion li ul li a {
+  color: #e0e0e0;
+}
+.iconic-view .list-accordion li ul li a:hover,
+.iconic-view .list-accordion li ul li a:focus {
+  color: #536dfe;
+}
+.iconic-view .list-accordion > li > a {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
+}
+.iconic-view .list-accordion > li > a:hover,
+.iconic-view .list-accordion > li > a:focus {
+  background-color: #3f51b5;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+  color: #536dfe;
+}
+.iconic-aside-container .user-profile-container {
+  background-color: #3f51b5;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+}
+.iconic-aside-container .user-profile-container .user-profile {
+  background-color: #3f51b5;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info {
+  color: #e0e0e0;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a {
+  color: #e0e0e0;
+}
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a:hover,
+.iconic-aside-container .user-profile-container .user-profile .admin-user-info ul li a:focus {
+  color: #536dfe;
+}
+.iconic-aside-container .user-profile-container .admin-bar {
+  background-color: #3f51b5;
+  background-image: url("../images/transparent-bg-dark.png");
+  background-size: cover;
+}
+.iconic-aside-container .user-profile-container .admin-bar ul li a {
+  color: #e0e0e0;
+}
+.iconic-aside-container .user-profile-container .admin-bar ul li a:hover,
+.iconic-aside-container .user-profile-container .admin-bar ul li a:focus {
+  color: #536dfe;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.tile-leftbar {
+  background-color: #fff;
+}

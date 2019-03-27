@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="widget-wrap material-table-widget">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="login-logo text-center">
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" title="Admin Template">
+              <img src="assets/images/cutmypic.png" alt="logo">
+            </a>
+          </div>
+          <form class="j-forms" #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-content Add-form">
+
+              <div class="alert alert-danger" *ngIf="submissionErrors">{{submissionErrors}}</div>
+              <!-- start text password -->
+              <div class="row">
+                <div class="col-md-12 unit">
+                  <label class="label">اسم المستخدم</label>
+                  <div class="input">
+                    <label class="icon-left" for="email">
+                      <i class="fa fa-edit"></i>
+                    </label>
+                    <input class="form-control" [(ngModel)]="formData.UserName" name="email" type="text" placeholder="اسم المستخدم"
+                      id="email" required>
+                  </div>
+                </div>
+
+                <div class="col-md-12 unit">
+                  <label class="label"> كلمه المرور</label>
+                  <div class="input">
+                    <label class="icon-left" for="password">
+                      <i class="fa fa-edit"></i>
+                    </label>
+                    <input class="form-control" [(ngModel)]="formData.Password" name="password" type="password"
+                      placeholder="كلمه المرور" id="password">
+                  </div>
+                </div>
+                <div class="col-md-12 text-center">
+                  <div class="btn-ex-container">
+
+                    <button type="submit" [disabled]="!form.form.valid || inProgress" class="btn btn-info btn-block primary-btn">
+                      تسجيل دخول</button>
+                  </div>
+                  <!-- end /.footer -->
+
+                </div>
+                <div class="col-md-12 text-center">
+                  <div class="btn-ex-container">
+                    <a data-toggle="modal" data-target="#resetpassword" style="cursor:pointer">تغيير كلمة المرور ؟ </a>
+
+                  </div>
+                  <!-- end /.footer -->
+
+                </div>
+
+              </div>
+              <!-- end text password -->
+
+
+            </div>
+            <!-- end /.content -->
+
+
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="resetpassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعديل كلمة المرور</h4>
+      </div>
+      <div class="modal-body">
+        <form class="j-forms" (ngSubmit)="ChangePassword()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الاسم </label>
+                <div class="input">
+                  <label class="icon-left" for="name1">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Details.UserName" name="name" type="text" placeholder="الاسم"
+                    id="name1" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">كلمة المرور الجديدة </label>
+                <div class="input">
+                  <label class="icon-left" for="pass">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Details.Password" name="pass" type="password" placeholder="كلمة المرور الجديدة"
+                    id="pass" required>
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" class="btn btn-info primary-btn">تعديل كلمة
+                    المرور</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,5 @@
+<section class="submission-errors" *ngIf="objectKeys(errors).length">
+  <ul class="submission-errors__list">
+    <li *ngFor="let key of objectKeys(errors)">{{errors[key]}}</li>
+  </ul>
+</section>

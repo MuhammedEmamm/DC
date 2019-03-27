@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> اسم العميل </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a>الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقرير المحاسبه</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+
+            <table class="table foo-data-table-filterable" data-filter="#filter" data-filter-text-only="true"
+              data-page-size="5" data-limit-navigation="3">
+              <thead>
+                <tr>
+                  <th>أسم المدين</th>
+                  <th>أسم الشركه</th>
+                  <th> الديون </th>
+                  <th>الإجمالي</th>
+                  <th> المستحق </th>
+                  <th> التاريخ </th>
+                  <th>المدفوع</th>
+                  <th> نسبة التحصيل </th>
+                  <th>متأخرات</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let s of accountingReport">
+                  <td> {{ s.DebtName }}</td>
+                  <td> {{ s.CompanyName }}</td>
+                  <td> {{ s.Debts }}</td>
+                  <td> {{ s.Total }}</td>
+                  <td> {{ s.PaymentDue }}</td>
+                  <td>{{s.Date | date:'short'}}</td>
+                  <td> {{ s.Payment }}</td>
+                  <td> {{ s.CollectionRate }} %</td>
+                  <td> {{s.PaymentDue - s.Payment }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

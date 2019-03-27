@@ -1,0 +1,127 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقریر نشاط الموظف</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقریر نشاط الموظف </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <!-- <form action="#" class="j-forms" novalidate="">
+
+                            <div class="form-content">
+
+                                <div class="w-section-header">
+                                    <h3>تنقيه سريعه</h3>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-6 unit">
+                                            <div class="input">
+                                                <label class="icon-right" for="timepic-1">
+                                                    <i class="fa fa-calendar"></i>
+                                                </label>
+                                                <input class="form-control" type="text" id="timepic-1" name="timepic-1"
+                                                    placeholder="اليوم" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 unit">
+                                             <div class="widget right-50">
+                                                        <div class="input">
+                                                            <input class="form-control" type="text" id="timepic-2" name="timepic-2" placeholder="timepicker" readonly="">
+                                                        </div>
+                                                        <label class="addon adn-50 adn-right" for="timepic-2">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </label>
+                                                    </div> -->
+        <!-- <div class="input">
+                                                <label class="icon-right" for="timepic-1">
+                                                    <i class="fa fa-calendar"></i>
+                                                </label>
+                                                <input class="form-control" type="text" id="timepic-1" name="timepic-1"
+                                                    placeholder="اليوم" readonly="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form> -->
+      </div>
+
+
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped data-tbl">
+              <thead>
+                <tr>
+                  <th>اسم الشركة</th>
+                  <th>اسم المدين</th>
+                  <th>المبلغ </th>
+                  <th>التاريخ</th>
+                  <th>الملاحظه</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+
+
+                <tr *ngFor="let employeeCollection of employeeCollection">
+                  <td>{{ employeeCollection.CompanyName }}</td>
+                  <td>{{ employeeCollection.DebtorName }}</td>
+                  <td>
+                    <ul>
+                      <li *ngFor="let s of employeeCollection.FollowUps">{{s.Mony}} ريال</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li *ngFor="let s of employeeCollection.FollowUps">
+                        {{s.Date | date:'short'}}
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="recent-comments">
+
+                      <div class="comment-text">
+                        <ul>
+                          <li *ngFor="let s of employeeCollection.FollowUps">
+                            {{s.Notes}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> الاشعارات </h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> الاشعارات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+        <div class="notification-wrap">
+          <h4>لديك {{Notfications.length}} اشعارات</h4>
+          <ul>
+            <li *ngFor="let not of Notfications">
+              <a [ngClass]="!not.IsRead ? 'NotRead' : 'clearfix'" (click)="PrePro(not.ID)" data-toggle="modal"
+                data-target="#NotDetails"><span class="ni w_bg_purple" style="cursor: pointer;"><i class="fa fa-bullhorn"></i></span>
+                <span class="notification-message" style="cursor: pointer;"><b>{{not.MessageContent}} </b><span class="notification-time clearfix">{{not.Date
+                    | date : 'short'}} </span></span></a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="NotDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notfications Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>المحتوي : {{NotficationsDetails.MessageContent}}
+        </h6>
+        <h6>من : {{NotficationsDetails.NotificationFrom}}
+        </h6>
+        <h6>الي : {{NotficationsDetails.NotificationTo}}
+        </h6>
+        <h6>التاريخ : {{NotficationsDetails.Date | date:'short'}}
+        </h6>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

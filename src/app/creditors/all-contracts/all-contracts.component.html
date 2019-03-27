@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> قسم الدائنين </h2>
+        <p>العقود</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li><a href="#">الرئيسية <i class="zmdi zmdi-chevron-right"></i></a></li>
+          <li class="active-page"> الدائنين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <a data-toggle="modal" data-target="#AddC" style="float: left; margin-right: 2.5rem; margin : 1%" class="btn btn-info primary-btn"
+        *ngIf="RoleID === '2'">+
+        أضافه</a>
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+
+          <div class="widget-content">
+            <div class="table-filter-header">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">بحث: </span>
+                      <input class="form-control" id="filter" type="text" [(ngModel)]="name" />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+            <table class="table table-striped data-tbl">
+              <thead>
+                <tr>
+                  <th> اسم العقد </th>
+                  <th *ngIf="RoleID === '2'"> النسبة </th>
+                  <th> المنتجات </th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of Contracts | search : 'Name' : name">
+
+                  <!-- CompanyID: 2
+                    CompanyName: "com2" -->
+                  <td>{{ c.Name }}</td>
+                  <td *ngIf="RoleID === '2'">{{ c.commission }}</td>
+                  <td><button class="btn btn-warning" [routerLink]="['/Allproducts' , c.ID]">المنتجات</button></td>
+
+
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- asignment popup modal-1 -->
+<div id="AddC" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">اضافة عقد</h4>
+      </div>
+      <div class="modal-body">
+        <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="AddContract()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">اسم العقد</label>
+                <div class="input">
+                  <label class="icon-left" for="CompanyName">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.ContructName" name="name" type="text" placeholder="اسم العقد "
+                    id="CompanyName" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">النسبة</label>
+                <div class="input">
+                  <label class="icon-left" for="ContructName">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Commission" name="contract" type="number"
+                    placeholder="النسبة" id="ContructName" required>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+                  <button type="submit" [disabled]="!form.form.valid" class="btn btn-info primary-btn">+
+                    أضافه</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>

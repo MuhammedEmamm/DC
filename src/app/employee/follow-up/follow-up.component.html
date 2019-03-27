@@ -1,0 +1,203 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المتابعة </h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> المتابعة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+        <div class="data-action-bar">
+          <div class="row">
+
+            <div class="col-md-12">
+
+              <div class="data-align-right Fledt">
+
+                <div class="tbl-action-toolbar">
+                  <ul>
+                    <li><a [routerLink]="['/add-followup']" class="btn add-row btn-primary" *ngIf="RoleID === '0'">أضافة</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped ">
+              <thead>
+                <tr>
+                  <th> موعد</th>
+                  <th> الدين</th>
+                  <th>المدين</th>
+                  <th>الدائن</th>
+                  <th> الحاله</th>
+                  <th>الملاحظة</th>
+                  <td>أضافه ملف</td>
+                  <th class="td-center"> </th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let user of usersFollowup">
+                  <td> {{user.Appointment|date:'short'}}</td>
+                  <td>{{user.Mony}} ريال</td>
+                  <td>{{user.DebtorName}}</td>
+                  <td>{{user.CompanyName}}</td>
+                  <td>
+                    <label class="label label-warning">غير مدفوع</label>
+                  </td>
+                  <td>
+                    <div class="recent-comments">
+                      <div class="recent-comment-meta">
+
+                        <div class="comment-text">
+                          <p>{{user.Notes}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-warining">Attachments</button>
+                  </td>
+                  <td>
+                    <a class="row-edit" (click)="PrePro(user.ID)" data-toggle="modal" data-target="#Edit-Follow" style="cursor:pointer" *ngIf="RoleID === '0'">
+                      <span class="zmdi zmdi-edit"></span>
+                    </a>
+                    <a class="row-delete" (click)="DeleteFollowup(user.ID)" style="cursor:pointer" *ngIf="RoleID === '0'">
+                      <span class="zmdi zmdi-close"></span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="Edit-Follow" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعديل المتابعة</h4>
+      </div>
+      <div class="modal-body">
+        <form class="j-forms" novalidate #form="ngForm" (ngSubmit)="editFollowup()">
+
+          <div class="form-content Add-form">
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الملاحظات</label>
+                <div class="input">
+                  <label class="icon-left" for="name">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Notes" name="name" type="text" placeholder="الملاحظات"
+                    id="name" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الموعد</label>
+                <div class="input">
+                  <label class="icon-left" for="username">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Date" name="username" type="date" placeholder="الموعد"
+                    id="username" required>
+                </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label">المبلغ</label>
+                <div class="input">
+                  <label class="icon-left" for="address">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Mony" name="address" type="number" placeholder="المبلغ"
+                    id="address">
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">الحالة</label>
+                <label class="input select">
+                  <select class="form-control" name="role" [(ngModel)]="formData.StatusType" required>
+                    <option selected disabled> --------- أختر الحالة ---------</option>
+                    <option value="0">غير مدفوع</option>
+                    <option value="1">مُحصلة</option>
+
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">Attachment</label>
+                <div class="input">
+                  <label class="icon-left" for="password">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input (change)="incomingfile($event)" class="form-control" name="Attachment" accept="application/pdf"
+                    type="file" placeholder="كلمه المرور" id="password">
+                </div>
+              </div>
+
+              <div class="col-md-12 unit">
+                <label class="label">المدين</label>
+                <label class="input select">
+                  <select class="form-control" name="role" [(ngModel)]="formData.DebtID" required>
+                    <option selected disabled> --------- أختر الدين ---------</option>
+                    <option value="{{debtor.DebtID}}" *ngFor="let debtor of allDebtors ; ">
+                      <h1> اسم المدين :
+                        {{debtor.Name}}<br>
+                        كود العقد :{{debtor.ContructID}}
+                      </h1>
+
+                    </option>
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid" class="btn btn-info primary-btn">
+                    +
+                    تعديل</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>

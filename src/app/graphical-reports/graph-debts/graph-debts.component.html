@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقریر بالديون</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقریر بالديون </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <form action="#" class="j-forms" novalidate="">
+
+      <div class="form-content">
+
+        <div class="w-section-header">
+          <h3>تنقيه سريعه</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="unit">
+              <label class="input select">
+
+                <select class="form-control" [(ngModel)]="CompanyID" [ngModelOptions]="{standalone: true}">
+                  <option value="" selected> إسم الشركة</option>
+                  <option value="{{s.CompanyID}}" *ngFor="let s of allComps">{{s.CompanyName}}</option>
+
+                </select>
+                <i></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-1">
+            <div class="unit">
+              <label class="input select">
+                <button class="btn btn-success" (click)="CompDebts(CompanyID)" style="width:100%">عرض</button>
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <!-- end popup time interval -->
+      </div>
+      <!-- end /.content -->
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <chart [type]="type" [data]="Data" [options]="options"></chart>
+
+
+  </div>
+
+  <div class="col-md-12">
+    <form action="#" class="j-forms" novalidate="">
+
+      <div class="form-content">
+
+        <div class="w-section-header">
+          <h3>تنقيه سريعه</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="unit">
+              <label class="input select">
+
+                <select class="form-control" [(ngModel)]="CompanyID1" [ngModelOptions]="{standalone: true}">
+                  <option value="" selected> إسم الشركة</option>
+                  <option value="{{s.CompanyID}}" *ngFor="let s of allComps">{{s.CompanyName}}</option>
+
+                </select>
+                <i></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-1">
+            <div class="unit">
+              <label class="input select">
+                <button class="btn btn-success" (click)="CompDebts2(CompanyID1)" style="width:100%">عرض</button>
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <!-- end popup time interval -->
+      </div>
+      <!-- end /.content -->
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <chart [type]="type2" [data]="Data2" [options]="options"></chart>
+  </div>
+
+
+</div>

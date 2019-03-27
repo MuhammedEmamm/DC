@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>اسم الموظف
+        </h2>
+        <p> </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a>الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقرير الاداء </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form action="#" class="j-forms" novalidate="">
+
+        <div class="form-content">
+
+          <div class="w-section-header">
+            <h3>تنقيه سريعه</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="col-md-6 unit">
+                <div class="input">
+                  <label class="icon-right" for="timepic-1">
+
+                    <i class="fa fa-calendar">من</i>
+                  </label>
+                  <input class="form-control" type="date" placeholder="اليوم" [(ngModel)]="date1" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 unit">
+
+                <div class="input">
+                  <label class="icon-right" for="timepic-2">
+                    <i class="fa fa-calendar">الي</i>
+                  </label>
+                  <input class="form-control" type="date" name="timepic-12" placeholder="اليوم" [(ngModel)]="date2"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-12"><button class="btn btn-warning" (click)="PR(date1 , date2)">تنقيه</button></div>
+            </div>
+          </div>
+          <!-- end popup time interval -->
+
+        </div>
+        <!-- end /.content -->
+
+      </form>
+      <button class="btn btn-info" (click)="ExportoCsv()"><i class="zmdi zmdi-archive"></i> Excel file</button>
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped data-tbl">
+              <thead>
+                <tr>
+                  <th>رقم الموظف</th>
+                  <th>اسم الموظف</th>
+                  <th>رقم هوية الموظف </th>
+                  <th>عدد المكالمات </th>
+                  <th>عدد الدفعات </th>
+                  <th>عدد المدينين </th>
+                  <th>اجمالي الديون </th>
+                  <th>اجمالي المدفوع </th>
+                  <th>نسبة التحصيل</th>
+
+                  <th>التفاصيل </th>
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of Data">
+                  <td>{{d.EmployeeID}} </td>
+                  <td>{{d.EmployeeName}} </td>
+
+                  <td>{{d.EmployeeIdentityNumber}}</td>
+                  <td>{{d.CallsCount}} </td>
+                  <td>{{d.BatchesCount}}</td>
+                  <td>{{d.DebtorsCount}} </td>
+                  <td>{{d.TotalDebt}}</td>
+                  <td>{{d.BatchesPayment}}</td>
+                  <td> {{ (d.BatchesPayment / d.TotalDebt) * 100  | number}} %</td>
+                  <td> <button class="btn btn-warning" [routerLink]="['/performance-report-details' , d.UserID]">
+                      تفاصيل</button></td>
+
+
+
+                </tr>
+
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

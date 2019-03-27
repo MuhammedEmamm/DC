@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدفوعات</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> المدفوعات </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+
+                  <th> الدين</th>
+                  <th> المدفوع</th>
+                  <th> المتبقي</th>
+                  <th> العقد</th>
+                  <th> ملف </th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- Payments: Array(2)
+                0:
+                ContructID: 2
+                Payment: 55
+                Remaining: 0
+                TotalMony: 55 -->
+
+                <tr *ngFor="let creditorPayment of creditorsPayment">
+                  <td>{{ creditorPayment.TotalMony }}</td>
+                  <td>{{ creditorPayment.Payment }}</td>
+                  <td>{{ creditorPayment.Remaining }}</td>
+
+                  <td>
+                    {{creditorPayment.ContructName}}
+                    <!-- <span *ngIf="!creditorPayment.Contract">لا يوجد صوره</span> -->
+                  </td>
+
+                  <td>
+                    <div style="height:55px ; overflow :auto">
+                      <div *ngFor="let s of creditorPayment.Attachment">
+                        <h6 [hidden]="s === null"><a class="btn btn-success" target="blank" href="http://yakensolution.cloudapp.net/DebtCollection/Content/Attachments/{{s}}">{{s}}</a></h6>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

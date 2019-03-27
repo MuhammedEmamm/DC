@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر بسجل اتصالات</h5>
+            <br>
+
+            <a [routerLink]="['/communication-record-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر بدمفوعات العملاء</h5>
+            <br>
+            
+            <a [routerLink]="['/customer-payment-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر ببيانات العملاء</h5>
+            <br>
+            
+            <a [routerLink]="['/customer-data-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر بنسبة التحصيل</h5>
+            <br>
+            
+            <a [routerLink]="['/determination-of-collection-rate']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر الموظفيين</h5>
+            <br>
+            
+            <a [routerLink]="['/employees-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر الحسابات المهملة</h5>
+            <br>
+            
+            <a [routerLink]="['/neglected-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر الاداء</h5>
+            <br>
+            
+            <a [routerLink]="['/performance-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3" *ngIf="RoleID === '2'">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر بالتحصيلات الشهرية</h5>
+            <br>
+            
+            <a [routerLink]="['/kpi-collection-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3" *ngIf="RoleID === '2'">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">تقریر بالاتصالات الشهرية</h5>
+            <br>
+            
+            <a [routerLink]="['/kpi-calls-report']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="padding:2%">
+          <div class="card-body">
+            <h5 class="card-title">التقارير البيانية</h5>
+            <br>
+            <a [routerLink]="['/all-graphs-reports']" class="btn btn-primary">عرض</a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

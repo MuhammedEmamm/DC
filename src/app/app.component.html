@@ -1,0 +1,12 @@
+<div *ngIf="Loggedin && router.url !== '/reset-password' " style="height:100vh;overflow-y:auto">
+  <app-header></app-header>
+  <app-side-bar></app-side-bar>
+  <section class="main-container">
+    <router-outlet></router-outlet>
+  </section>
+  <app-footer></app-footer>
+  
+</div>
+
+<app-reset-password *ngIf="router.url === '/reset-password'"></app-reset-password>
+<app-login *ngIf="!Loggedin "></app-login>

@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> المدفوعات</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> المدفوعات </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-info pull-left" (click)="ExportoCsv()"><i class="zmdi zmdi-archive"></i> Excel file</button>
+  <br>
+  <div class="row">
+
+    <div class="col-md-12">
+
+
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+
+                  <th> الدين</th>
+                  <th> المدفوع</th>
+                  <th> المتبقي</th>
+                  <th> العقد</th>
+                  <th> الدائن</th>
+                  <th> نسبة العقد</th>
+                  <th> نسبة التحصيل</th>
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of Data">
+                  <td> {{d.TotalMony}} ريال </td>
+                  <td> {{d.Payment}} ريال</td>
+                  <td> {{d.Remaining}} ريال</td>
+                  <td>
+                    {{d.ContructName}}
+                  </td>
+                  <td>
+                    {{d.CompanyName}}
+                  </td>
+                  <td>
+                    {{d.Comission}}
+                  </td>
+                  <td>
+                    {{(d.Payment / d.TotalMony) * 100 }} %
+                  </td>
+
+
+
+                </tr>
+
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

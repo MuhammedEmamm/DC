@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> اهداف الموظفين </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> التفاصيل</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form action="#" class="j-forms" novalidate="">
+
+        <div class="form-content">
+
+          <div class="w-section-header">
+            <h3>تنقيه سريعه</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <div class="unit">
+                <label class="input select">
+
+                  <select class="form-control" [(ngModel)]="SupName" [ngModelOptions]="{standalone: true}">
+                    <option value="" selected> إسم المشرف</option>
+                    <option value="{{s.ID}}" *ngFor="let s of Emps">{{s.Name}}</option>
+
+                  </select>
+                  <i></i>
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!-- end popup time interval -->
+        </div>
+        <!-- end /.content -->
+      </form>
+    </div>
+
+    <div class="col-md-12">
+      <div class="widget-wrap material-table-widget">
+
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+
+
+            <table class="table table-striped data-tbl">
+              <thead>
+                <tr>
+                  <th class="td-center">رقم الموظف</th>
+                  <th class="td-center">اسم الموظف</th>
+
+
+                  <th class="td-center"> إجمالي الديون </th>
+
+                  <th class="td-center">الهدف</th>
+
+
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of AllData | search : 'SuperVisiorID':SupName">
+                  <td class="td-center"> {{emp.UserID}} </td>
+                  <td class="td-center"> {{emp.UserName}} </td>
+
+                  <td class="td-center">
+                    {{emp.DebtCollection}}
+                  </td>
+                  <td class="td-center"> {{emp.Target}}</td>
+                  <td><a (click)="EditPreprocess(emp.UserID)" data-toggle="modal" data-target="#Edit-Employee" class="btn btn-default btn-sm m-user-edit"
+                      *ngIf="RoleID === '2' || RoleID === '3' || RoleID === '1' ">
+                      <i class="zmdi zmdi-edit"></i>
+                    </a>
+                  </td>
+
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div id="Edit-Employee" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعديل الهدف</h4>
+      </div>
+      <div class="modal-body">
+        <form class="j-forms" #form="ngForm" (ngSubmit)="SetTarget()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الهدف</label>
+                <div class="input">
+                  <label class="icon-left" for="name">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Details.Target" name="name" type="number" placeholder="الهدف"
+                    id="name" required>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid " class="btn btn-info primary-btn">تعديل الموظف</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>

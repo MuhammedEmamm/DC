@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> التحصيلات </h2>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> التحصيلات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <form action="#" class="j-forms" novalidate="">
+
+          <div class="form-content">
+
+            <div class="w-section-header">
+              <h3>تنقيه سريعه</h3>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="unit">
+                  <label class="input select">
+                    <select class="form-control" [(ngModel)]="compname" [ngModelOptions]="{standalone: true}">
+                      <option value="" selected> إسم الدائن</option>
+                      <option value="{{s.CompanyName}}" *ngFor="let s of creditorsComapnies">{{s.CompanyName}}</option>
+
+                    </select>
+                    <i></i>
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label><input type="search" class="form-control" placeholder="بحث" aria-controls="DataTables_Table_0"
+                    [(ngModel)]="name" [ngModelOptions]="{standalone: true}"></label>
+              </div>
+
+            </div>
+            <!-- end popup time interval -->
+
+          </div>
+          <!-- end /.content -->
+
+        </form>
+      </div>
+
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>إسم الموظف</th>
+                  <th>إسم المدين</th>
+                  <th>إسم الشركة</th>
+                  <th> المدفوع</th>
+                  <th>إسم المشرف</th>
+                  <th> المرفقات</th>
+                  <th class="td-center">
+
+
+                  </th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let company of companyCollection | search :'DebtorName' : name: 'CompanyName' : compname  ">
+                  <td> {{company.EmployeeName}} </td>
+                  <td> {{company.DebtorName}}</td>
+                  <td> {{ company.CompanyName }} </td>
+                  <td>{{company.Payment}} ريال</td>
+                  <td>{{SupName}}</td>
+                  <td>
+                    <a class="btn btn-warning btn-sm" href="http://yakensolution.cloudapp.net/DebtCollection/Content/Attachments/{{company.Attachment}}"
+                      target="blank">Attachments</a>
+                  </td>
+
+                  <td class="td-center">
+                    <div *ngIf="company.Status === 1">
+                      <button class="btn add-row btn-success" (click)="Accept(company.BatchID , company.DebtorName)"
+                        *ngIf="RoleID !== '3'">تاكيد</button>
+                      <button class="btn add-row btn-danger" (click)="Reject(company.BatchID , company.DebtorName)"
+                        *ngIf="RoleID !== '3'">الغاء</button>
+                      <label class="label label-warning" *ngIf="RoleID === '3'">انتظار القبول او الرفض</label>
+
+                    </div>
+                    <label class="label label-primary" *ngIf="company.Status === 2">مقبولة</label>
+                    <label class="label label-danger" *ngIf="company.Status === 3">مرفوضة</label>
+
+
+                  </td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

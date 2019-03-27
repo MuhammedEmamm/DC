@@ -1,0 +1,153 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> قسم الدائنين </h2>
+        <p>جميع الشركات والبنوك</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li><a href="#">الرئيسية <i class="zmdi zmdi-chevron-right"></i></a></li>
+          <li class="active-page"> الدائنين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <a [routerLink]="['/add-creditor']" style="float: left; margin-right: 2.5rem;" class="btn btn-info primary-btn"
+        *ngIf="RoleID === '2'">+
+        أضافه</a>
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+
+          <div class="widget-content">
+            <div class="table-filter-header">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <span class="tfh-label">بحث: </span>
+                      <input class="form-control" id="filter" type="text" [(ngModel)]="name" />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+            <table class="table table-striped data-tbl">
+              <thead>
+                <tr>
+                  <th> الاسم ( شركة / بنك )</th>
+                  <th> كود ( شركة / بنك )</th>
+
+                  <th class="td-center">المدفوعات</th>
+                  <th class="td-center">العقود</th>
+                  <th class="td-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let creditorsComapny of creditorsComapnies | search : 'CompanyName' : name">
+
+                  <!-- CompanyID: 2
+                  CompanyName: "com2" -->
+                  <td>{{ creditorsComapny.CompanyName }}</td>
+                  <td>{{ creditorsComapny.CompanyCode }}</td>
+
+                  <td class="text-center"><a [routerLink]="['/creditor-payment' , creditorsComapny.CompanyID]" class="btn btn-primary">
+                      <i class="zmdi zmdi-money-box"></i>
+                      المدفوعات </a>
+                  </td>
+                  <td class="text-center"><a class="btn btn-success" [routerLink]="['/Allcontracts' , creditorsComapny.CompanyID]">
+                      <i class="zmdi zmdi-money-box"></i>
+                      العقود </a>
+                  </td>
+
+                  <td class="td-center">
+                    <div class="btn-toolbar" role="toolbar">
+                      <div class="btn-group" role="group">
+
+                        <a (click)="editCompany(creditorsComapny)" class="btn btn-default btn-sm m-user-edit" *ngIf="RoleID === '2'">
+                          <i class="zmdi zmdi-edit"></i>
+                        </a>
+                        <a (click)="deleteCompany(creditorsComapny.CompanyID)" class="btn btn-default btn-sm m-user-delete"
+                          *ngIf="RoleID === '2'">
+                          <i class="zmdi zmdi-close"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- asignment popup modal-1 -->
+<div id="AddC" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">اضافة عقد</h4>
+      </div>
+      <div class="modal-body">
+        <form action="#" class="j-forms" novalidate #form="ngForm" (ngSubmit)="AddContract()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">اسم العقد</label>
+                <div class="input">
+                  <label class="icon-left" for="CompanyName">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.ContructName" name="name" type="text" placeholder="اسم العقد "
+                    id="CompanyName" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">النسبة</label>
+                <div class="input">
+                  <label class="icon-left" for="ContructName">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="formData.Commission" name="contract" type="number"
+                    placeholder="النسبة" id="ContructName" required>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+                  <button type="submit" [disabled]="!form.form.valid" class="btn btn-info primary-btn">+
+                    أضافه</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- asignment popup modal-1 -->

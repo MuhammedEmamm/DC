@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقریر بسجل اتصالات</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقریر بسجل اتصالات </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <form action="#" class="j-forms" novalidate="">
+
+          <div class="form-content">
+
+            <div class="w-section-header">
+              <h3>تنقيه سريعه</h3>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                <div class="unit">
+                  <label class="input select">
+
+                    <select class="form-control" [(ngModel)]="CompanyName" [ngModelOptions]="{standalone: true}">
+                      <option value="" selected> إسم الدائن</option>
+                      <option value="{{s.CompanyName}}" *ngFor="let s of allComps">{{s.CompanyName}}</option>
+
+                    </select>
+                    <i></i>
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="unit">
+                  <label class="input select">
+                    <input class="form-control" [(ngModel)]="DebName" [ngModelOptions]="{standalone: true}" placeholder="رقم هوية المدين">
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="unit">
+                  <label class="input select">
+                    <input class="form-control" [(ngModel)]="EmpName" [ngModelOptions]="{standalone: true}" placeholder="رقم الموظف">
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-6 unit">
+                  <div class="input">
+                    <label class="icon-right" for="timepic-1">
+
+                      <i class="fa fa-calendar">من</i>
+                    </label>
+                    <input class="form-control" type="date" placeholder="اليوم" [(ngModel)]="date1" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-6 unit">
+
+                  <div class="input">
+                    <label class="icon-right" for="timepic-2">
+                      <i class="fa fa-calendar">الي</i>
+                    </label>
+                    <input class="form-control" type="date" name="timepic-12" placeholder="اليوم" [(ngModel)]="date2"
+                      [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end popup time interval -->
+
+          </div>
+          <!-- end /.content -->
+
+        </form>
+        <button class="btn btn-info" (click)="ExportoCsv()"><i class="zmdi zmdi-archive"></i> Excel file</button>
+      </div>
+      
+
+
+
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>إسم الدائن</th>
+                  <th>إسم المدين</th>
+                  <th>رقم هوية المدين</th>
+                  <th>رقم هاتف المدين</th>
+                  <th>إسم الموظف</th>
+                  <th>رقم الموظف</th>
+                  <th class="td-center"> التاريخ</th>
+                  <th>الوقت</th>
+                  <th>اسم المنتج</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let call of Data | search: 'CompanyName' :  CompanyName : 'DebtorIdentityNumber' : DebName : 'UserID' : EmpName | datefilter : 'Date' : date1 : date2">
+                  <td> {{call.CompanyName}} </td>
+                  <td> {{call.DebtorName}}</td>
+                  <td> {{call.DebtorIdentityNumber}}</td>
+                  <td> {{call.Phone}}</td>
+                  <td>
+                    {{call.StaffName}}
+                  </td>
+                  <td>
+                    {{call.UserID}}
+                  </td>
+
+                  <td class="td-center">
+                    {{call.Date | date:'short'}}
+                  </td>
+                  <td class="td-center">
+                    {{call.Time}} دقيقة
+                  </td>
+                  <td class="td-center">
+                    {{call.ProductName}}
+                  </td>
+
+                  <td><a [routerLink]="['/communication-record-report-details', call.DebtorID]" class="btn add-row btn-warning">تفاصيل</a></td>
+                </tr>
+
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

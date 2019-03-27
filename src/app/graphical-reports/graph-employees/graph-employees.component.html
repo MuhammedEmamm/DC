@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقریر الموظفين</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقریر الموظفين </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <form action="#" class="j-forms" novalidate="">
+
+      <div class="form-content">
+
+        <div class="w-section-header">
+          <h3>تنقيه سريعه</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="unit">
+              <label class="input select">
+                <input class="form-control" type="month" [(ngModel)]="dateCollect" [ngModelOptions]="{standalone: true}">
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-1">
+            <div class="unit">
+              <label class="input select">
+                <button class="btn btn-success" (click)="EmpCollect()" style="width:100%">عرض</button>
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <!-- end popup time interval -->
+      </div>
+      <!-- end /.content -->
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <chart [type]="type" [data]="Data" [options]="options"></chart>
+
+
+  </div>
+
+  <div class="col-md-12">
+    <form action="#" class="j-forms" novalidate="">
+
+      <div class="form-content">
+
+        <div class="w-section-header">
+          <h3>تنقيه سريعه</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="unit">
+              <label class="input select">
+                <input class="form-control" type="month" [(ngModel)]="dateCalls" [ngModelOptions]="{standalone: true}">
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-1">
+            <div class="unit">
+              <label class="input select">
+                <button class="btn btn-success" (click)="EmpCalls()" style="width:100%">عرض</button>
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <!-- end popup time interval -->
+      </div>
+      <!-- end /.content -->
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <chart [type]="type" [data]="Data1" [options]="options1"></chart>
+  </div>
+
+
+</div>

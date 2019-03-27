@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <div class="page-header filled full-block light">
+    <div class="row">
+      <div class="col-md-6">
+        <h2> تقریر الحسابات المهملة</h2>
+
+      </div>
+      <div class="col-md-6">
+        <ul class="list-page-breadcrumb">
+          <li>
+            <a href="#">الرئيسية
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="active-page"> تقریر الحسابات المهملة </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="RoleID === '2'">
+    <input type="number" [(ngModel)]="Days">
+    <button class="btn btn-success" (click)="ClickAdd(Days)">تغير عدد الايام</button>
+
+  </div>
+  <br>
+  <button class="btn btn-info" (click)="ExportoCsv()"><i class="zmdi zmdi-archive"></i> Excel file</button>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-wrap  material-table-widget">
+        <div class="widget-container margin-top-0">
+          <div class="widget-content">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>إسم الدائن</th>
+                  <th>إسم المدين</th>
+                  <th>رقم هوية المدين</th>
+                  <th>إسم الموظف</th>
+                  <th>رقم الموظف </th>
+                  <th>إسم المشرف </th>
+                  <th>كود المنتج</th>
+                  <th>اسم المنتج</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of Data">
+                  <td> {{d.CompanyName}} </td>
+                  <td> {{d.DebtorName}}</td>
+                  <td>
+                    {{d.DebtorIdentityNunmber}}
+                  </td>
+                  <td>
+                    {{d.EmployeeName}}
+                  </td>
+                  <td>
+                    {{d.EmployeeID}}
+                  </td>
+                  <td>
+                    {{d.SupervisiorName}}
+                  </td>
+                  <td>
+                    {{d.ProductCode}}
+                  </td>
+                  <td>
+                    {{d.ProductName}}
+
+                  </td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">الحسابات المهملة</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button class="btn btn-primary " (click)="Click(Days)"> عرض</button>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->

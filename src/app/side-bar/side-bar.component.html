@@ -1,0 +1,161 @@
+<!--Leftbar Start Here-->
+<aside class="leftbar material-leftbar">
+  <div class="left-aside-container">
+    <div class="user-profile-container">
+      <div class="user-profile clearfix">
+        <!-- <div class="admin-user-thumb">
+          <img src="assets/images/avatar/jaman_01.jpg" alt="admin">
+        </div>
+         -->
+        <div class="admin-user-info">
+          <ul>
+            <li>
+              <a>{{AllUserData.Name}}</a>
+            </li>
+            <li>
+              <h5 *ngIf="AllUserData.RoleID === '0' " style="color:white"><b>مستخدم</b></h5>
+              <h5 *ngIf="AllUserData.RoleID === '1'" style="color:white"><b>مشرف</b></h5>
+              <h5 *ngIf="AllUserData.RoleID === '2'" style="color:white"><b>ادمن</b></h5>
+              <h5 *ngIf="AllUserData.RoleID === '3'" style="color:white"><b>مدير</b></h5>
+
+
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="admin-bar">
+        <ul>
+          <li>
+            <a (click)="logOut()">
+              <i class="zmdi zmdi-power"></i>
+            </a>
+          </li>
+
+          <li>
+
+
+            <a [routerLink]="['/notifications']" style="cursor:pointer">
+
+              <a class="notif" *ngIf="counter !== 0"><span class="num">{{counter}}</span></a>
+
+              <i class="zmdi zmdi-globe" *ngIf="counter === 0"></i>
+
+
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/chat']" style="cursor:pointer">
+              <i class="zmdi zmdi-comments"></i>
+            </a>
+          </li>
+          <li>
+            <a data-toggle="modal" data-target="#resetpassword" style="cursor:pointer">
+              <i class="zmdi zmdi-lock"></i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <ul class="list-accordion">
+      <li class="list-title"><a [routerLink]="['/data-table']" routerLinkActive="router-link-active" *ngIf="AllUserData.RoleID !== '0' ">
+          <i class="zmdi zmdi-accounts-alt"></i>
+          فريق العمل</a></li>
+      <li class="list-title"><a [routerLink]="['/department-of-creditors']" *ngIf="AllUserData.RoleID !== '0' ">
+          <i class="zmdi zmdi-money"></i>
+          قسم الدائنين (الشركات / البنك) </a></li>
+      <li class="list-title"><a [routerLink]="['/all-debtors']">
+          <i class="zmdi zmdi-money"></i>
+          قسم المدينين</a></li>
+      <li class="list-title " *ngIf="AllUserData.RoleID === '0' || AllUserData.RoleID === '3' "><a [routerLink]="['/user-followup']">
+          <i class="zmdi zmdi-view-dashboard"></i>
+          المتابعه</a></li>
+      <li class="list-title">
+        <a [routerLink]="['/debtor-collection']" *ngIf="AllUserData.RoleID === '0' ">
+          <i class="zmdi zmdi-view-dashboard">
+
+          </i>
+          التحصيلات</a>
+        <a [routerLink]="['/company-collection']" *ngIf="AllUserData.RoleID !== '0' ">
+          <i class="zmdi zmdi-view-dashboard"></i>
+          التحصيلات</a>
+
+      </li>
+
+      <li class="list-title"><a [routerLink]="['/all-reports']" *ngIf="AllUserData.RoleID !== '0' ">
+          <i class="zmdi zmdi-assignment"></i>
+          التقارير</a></li>
+      <li class="list-title"><a [routerLink]="['/all-targets']">
+          <i class="zmdi zmdi-assignment"></i>
+          الاهداف الشهرية</a></li>
+
+
+
+      <br>
+
+      <li class="list-title">
+        <h1 class="text-center"> <img src="assets/images/imageedit_1_9862203288.png" style="width:65%">
+        </h1>
+      </li>
+
+    </ul>
+  </div>
+</aside>
+<!--Leftbar End Here-->
+<div id="resetpassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">تعديل كلمة المرور</h4>
+      </div>
+      <div class="modal-body">
+        <form class="j-forms" #form="ngForm" (ngSubmit)="ChangePassword()">
+
+          <div class="form-content Add-form">
+
+            <!-- start text password -->
+            <div class="row">
+              <div class="col-md-12 unit">
+                <label class="label">الاسم </label>
+                <div class="input">
+                  <label class="icon-left" for="name1">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Details1.UserName" name="name" type="text" placeholder="الاسم"
+                    id="name1" required>
+                </div>
+              </div>
+              <div class="col-md-12 unit">
+                <label class="label">كلمة المرور الجديدة </label>
+                <div class="input">
+                  <label class="icon-left" for="pass">
+                    <i class="fa fa-edit"></i>
+                  </label>
+                  <input class="form-control" [(ngModel)]="Details1.Password" name="pass" type="password" placeholder="كلمة المرور الجديدة"
+                    id="pass" required>
+                </div>
+              </div>
+
+
+              <div class="col-md-12">
+                <div class="btn-ex-container">
+
+                  <button type="submit" [disabled]="!form.form.valid " class="btn btn-info primary-btn">تعديل كلمة
+                    المرور</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+
+  </div>
+</div>
